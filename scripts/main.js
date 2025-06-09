@@ -152,9 +152,31 @@ document.addEventListener("DOMContentLoaded", function () {
 				cart[cartKey].price = price;
 				localStorage.setItem("cart", JSON.stringify(cart));
 				showToast("Item has been added to cart!");
+				updateCartBadge();
 			}
 		});
 	}
+
+	// Update cart badge count
+	function updateCartBadge() {
+		const badge = document.getElementById("cart-badge");
+		if (!badge) return;
+		let cart = JSON.parse(localStorage.getItem("cart") || "{}");
+		let count = 0;
+		for (const key in cart) {
+			const item = cart[key];
+			count += item.qty ? item.qty : typeof item === "number" ? item : 1;
+		}
+		if (count > 0) {
+			badge.textContent = count;
+			badge.style.display = "inline-block";
+		} else {
+			badge.style.display = "none";
+		}
+	}
+
+	// Update badge on page load
+	updateCartBadge();
 
 	// Generate a unique order ID that is never reused
 	function generateUniqueOrderId() {

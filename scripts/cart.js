@@ -1,6 +1,10 @@
 /** @format */
 
 import { products } from "./product-data.js";
+// Add this import for badge update
+import("./main.js").then((mod) => {
+	window.updateCartBadge = mod.updateCartBadge || (() => {});
+});
 
 // Utility: get cart from localStorage
 function getCart() {
@@ -52,6 +56,7 @@ function renderCart() {
 	}
 	cartMain.innerHTML =
 		`<h1 class="text-center mb-5 fw-bold">Your Cart</h1>` + html;
+	window.updateCartBadge && window.updateCartBadge();
 }
 
 // Handle cart events
@@ -63,9 +68,14 @@ function setupCartEvents() {
 			let qty = parseInt(e.target.value);
 			if (isNaN(qty) || qty < 1) qty = 1;
 			const cart = getCart();
-			cart[id] = qty;
+			if (cart[id] && typeof cart[id] === "object") {
+				cart[id].qty = qty;
+			} else {
+				cart[id] = { qty };
+			}
 			saveCart(cart);
 			renderCart();
+			window.updateCartBadge && window.updateCartBadge();
 		}
 	});
 	cartMain.addEventListener("click", function (e) {
@@ -79,6 +89,7 @@ function setupCartEvents() {
 			delete cart[id];
 			saveCart(cart);
 			renderCart();
+			window.updateCartBadge && window.updateCartBadge();
 		}
 	});
 }

@@ -35,9 +35,15 @@
 							>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-white" href="cart.html"
-								><i class="bi bi-cart3 me-1"></i>Cart</a
-							>
+							<a class="nav-link text-white position-relative" href="cart.html">
+								<i class="bi bi-cart3 me-1"></i>Cart
+								<span
+									id="cart-badge"
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+									style="font-size: 0.7rem; display: none"
+									>0</span
+								>
+							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link text-white" href="about.html"
@@ -155,6 +161,61 @@
 				style="background: linear-gradient(135deg, #e3f6ff 0%, #aee2ff 100%)">
 				<div class="container">
 					<h2 class="text-center fw-bold mb-4">What Our Customers Say</h2>
+					<!-- Feedback Form -->
+					<div class="row justify-content-center mb-5">
+						<div class="col-12 col-md-8 col-lg-6">
+							<form
+								id="feedback-form"
+								class="needs-validation bg-white rounded-4 shadow-sm p-4"
+								novalidate>
+								<h5 class="mb-3">Leave Your Feedback</h5>
+								<div class="mb-3">
+									<label for="feedback-name" class="form-label">Name</label>
+									<input
+										type="text"
+										class="form-control"
+										id="feedback-name"
+										name="name"
+										required
+										maxlength="32" />
+									<div class="invalid-feedback">Please enter your name.</div>
+								</div>
+								<div class="mb-3">
+									<label class="form-label">Rating</label>
+									<select class="form-select" name="rating" required>
+										<option value="">Choose...</option>
+										<option value="5">★★★★★</option>
+										<option value="4">★★★★☆</option>
+										<option value="3">★★★☆☆</option>
+										<option value="2">★★☆☆☆</option>
+										<option value="1">★☆☆☆☆</option>
+									</select>
+									<div class="invalid-feedback">Please select a rating.</div>
+								</div>
+								<div class="mb-3">
+									<label for="feedback-comment" class="form-label"
+										>Feedback</label
+									>
+									<textarea
+										class="form-control"
+										id="feedback-comment"
+										name="comment"
+										rows="2"
+										required
+										maxlength="200"></textarea>
+									<div class="invalid-feedback">
+										Please enter your feedback.
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</form>
+						</div>
+					</div>
+					<!-- Dynamic Feedback List -->
+					<div
+						class="row g-4 justify-content-center mb-4"
+						id="feedback-list"></div>
+					<!-- Hardcoded Testimonials -->
 					<div class="row g-4 justify-content-center">
 						<div class="col-12 col-md-4">
 							<div class="bg-white rounded-4 shadow-sm p-4 h-100 text-center">
@@ -232,5 +293,6 @@
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 		<script type="module" src="scripts/main.js"></script>
+		<script type="module" src="scripts/feedback.js"></script>
 	</body>
 </html>
