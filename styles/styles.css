@@ -1,0 +1,71 @@
+/**
+ * Subtle hover/active effects for product cards and buttons
+ *
+ * @format
+ */
+
+.card:hover,
+.card:focus {
+	box-shadow: 0 6px 32px 0 #0099ff33, 0 1.5px 8px 0 #0099ff22;
+	transform: translateY(-4px) scale(1.02);
+	transition: box-shadow 0.2s, transform 0.2s;
+}
+.btn-success,
+.btn-outline-primary,
+.btn-primary {
+	transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+}
+.btn-success:hover,
+.btn-outline-primary:hover,
+.btn-primary:hover {
+	box-shadow: 0 2px 12px #0099ff44;
+	filter: brightness(1.08);
+}
+.btn-success:active,
+.btn-outline-primary:active,
+.btn-primary:active {
+	filter: brightness(0.95);
+}
+.card-text {
+	font-size: 1.08rem;
+	color: #1a2633;
+	margin-bottom: 0.5rem;
+	line-height: 1.6;
+	word-break: break-word;
+}
+.card-text br {
+	display: block;
+	margin-bottom: 0.35em;
+}
+.card .card-body {
+	padding-bottom: 1.2rem;
+}
+.card-title {
+	font-size: 1.18rem;
+	margin-bottom: 0.7rem;
+}
+.product-img {
+	width: 100%;
+	max-width: 220px;
+	height: 180px;
+	object-fit: cover;
+	border-radius: 1rem;
+	margin: 0 auto 1rem auto;
+	display: block;
+	box-shadow: 0 2px 16px #0099ff22;
+	border: 3px solid #fff;
+	background: #f8fafc;
+	transition: box-shadow 0.2s, border-color 0.2s;
+}
+.card:hover .product-img {
+	box-shadow: 0 6px 32px 0 #0099ff33, 0 1.5px 8px 0 #0099ff22;
+	border-color: #aee2ff;
+}
+@media (max-width: 600px) {
+	.card-text {
+		font-size: 0.98rem;
+	}
+	.card-title {
+		font-size: 1.05rem;
+	}
+}
